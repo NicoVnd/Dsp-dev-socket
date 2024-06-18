@@ -62,7 +62,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="http://localhost:3000/">Home</a>
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="http://localhost:3000/"
+                >Home</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="">Link</a>
@@ -105,33 +110,32 @@
       </div>
     </nav>
 
-    <div class="container mt-5">
-      <h2 class="mb-4 text-center">Rejoindre un canal</h2>
-      <form id="channel-form" class="card p-4 shadow-sm">
-        <div class="mb-3">
-          <label for="channel-name" class="form-label">Nom du canal</label>
-          <input
-            type="text"
-            class="form-control"
-            id="channel-name"
-            name="channel-name"
-            required
-          />
-        </div>
-        <button type="submit" class="btn btn-primary w-100 fw-bold">
-          Rejoindre
+    <div class="container mt-5 d-flex justify-content-center">
+      <div class="text-center">
+        <h2 class="mb-4 text-center">Rejoindre un channel</h2>
+        <button id="create-channel-button" class="btn btn-primary fw-bold">
+          Créer un canal 
         </button>
-      </form>
+      </div>
     </div>
     <script>
+      function generateRandomString(length) {
+        const characters =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let result = "";
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(
+            Math.floor(Math.random() * characters.length)
+          );
+        }
+        return result;
+      }
+
       document
-        .getElementById("channel-form")
-        .addEventListener("submit", (e) => {
-          e.preventDefault();
-          var channelName = document.getElementById("channel-name").value;
-          if (channelName) {
-            window.location.href = `/channel/${channelName}`;
-          }
+        .getElementById("create-channel-button")
+        .addEventListener("click", () => {
+          const randomChannelName = generateRandomString(12);
+          window.location.href = `/channel/${randomChannelName}`;
         });
     </script>
   </body>
